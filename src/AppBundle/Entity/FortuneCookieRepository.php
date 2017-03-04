@@ -19,6 +19,6 @@ class FortuneCookieRepository extends EntityRepository
       ->setParameter('category', $category)
       ->select('SUM(fc.numberPrinted) as fortunesPrinted')
       ->getQuery()
-      ->getOneOrNullResult();
+      ->getSingleScalarResult();
   }
 }

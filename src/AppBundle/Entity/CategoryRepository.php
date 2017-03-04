@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+  public function findAllOrdered(){
+    //$dql = 'SELECT cat FROM AppBundle\Entity\Category cat ORDER BY cat.name DESC';
+    //$query = $this->getEntityManager()->createQuery($dql);
+    
+    $qb = $this->createQueryBuilder('cat')
+      ->addOrderBy('cat.name', 'ASC');
+    $query = $qb->getQuery();
+    
+    return $query->execute();
+  }
+  
+  public function search($term){
+    return $this->createQueryBuilder('cat')
+      ->andWhere('cat.name LIKE :searchTerm OR cat.iconKey LIKE :searchTerm')
+      ->setParameter('searchTerm', '%'.$term.'%')
+      ->getQuery()
+      ->execute();
+  }
 }

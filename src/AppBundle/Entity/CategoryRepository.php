@@ -17,6 +17,8 @@ class CategoryRepository extends EntityRepository
     //$query = $this->getEntityManager()->createQuery($dql);
     
     $qb = $this->createQueryBuilder('cat')
+      ->leftJoin('cat.fortuneCookies', 'fc')
+      ->addSelect('fc')      
       ->addOrderBy('cat.name', 'ASC');
     $query = $qb->getQuery();
     

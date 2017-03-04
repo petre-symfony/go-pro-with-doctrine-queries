@@ -48,7 +48,6 @@ class FortuneController extends Controller
         $fortunesPrinted = $this->getDoctrine()
           ->getRepository('AppBundle:FortuneCookie')
           ->countNumberForCategory($category);
-        var_dump($fortunesPrinted);die;
         
         
         return $this->render('fortune/showCategory.html.twig',[

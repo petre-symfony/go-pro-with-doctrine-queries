@@ -36,4 +36,14 @@ class CategoryRepository extends EntityRepository
       ->getQuery()
       ->execute();
   }
+  
+  public function findWithFortunesJoin($id){
+    return $this->createQueryBuilder('cat')
+      ->andWhere('cat.id = :id')
+       ->leftJoin('cat.fortuneCookies', 'fc')     
+      ->addSelect('fc')      
+      ->setParameter('id', $id)
+      ->getQuery()
+      ->getOneOrNullResult();
+  }
 }

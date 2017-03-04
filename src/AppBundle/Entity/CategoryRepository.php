@@ -25,7 +25,9 @@ class CategoryRepository extends EntityRepository
   
   public function search($term){
     return $this->createQueryBuilder('cat')
-      ->andWhere('cat.name LIKE :searchTerm OR cat.iconKey LIKE :searchTerm')
+      ->andWhere('cat.name LIKE :searchTerm 
+        OR cat.iconKey LIKE :searchTerm
+        OR fc.fortune LIKE :searchTerm')
       ->leftJoin('cat.fortuneCookies', 'fc')      
       ->setParameter('searchTerm', '%'.$term.'%')
       ->getQuery()

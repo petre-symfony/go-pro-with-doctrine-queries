@@ -18,6 +18,7 @@ class FortuneCookieRepository extends EntityRepository
       ->andWhere('fc.category = :category')
       ->setParameter('category', $category)
       ->select('SUM(fc.numberPrinted) as fortunesPrinted')
-      ->getQuery();
+      ->getQuery()
+      ->getOneOrNullResult();
   }
 }

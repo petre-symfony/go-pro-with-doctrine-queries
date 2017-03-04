@@ -28,7 +28,8 @@ class CategoryRepository extends EntityRepository
       ->andWhere('cat.name LIKE :searchTerm 
         OR cat.iconKey LIKE :searchTerm
         OR fc.fortune LIKE :searchTerm')
-      ->leftJoin('cat.fortuneCookies', 'fc')      
+      ->leftJoin('cat.fortuneCookies', 'fc')
+      ->addSelect('fc')      
       ->setParameter('searchTerm', '%'.$term.'%')
       ->getQuery()
       ->execute();

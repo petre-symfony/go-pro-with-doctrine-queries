@@ -22,4 +22,8 @@ class CategoryRepository extends EntityRepository
     
     return $query->execute();
   }
+  
+  public function search($term){
+    return $this->createQueryBuilder('cat');
+  }
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use AppBundle\Entity\Category;
 
 /**
  * FortuneCookieRepository
@@ -12,4 +13,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class FortuneCookieRepository extends EntityRepository
 {
+  public function countNumberForCategory(Category $category){
+    return $this->createQueryBuilder('fc')
+      ->andWhere('fc.category = :category')
+      ->setParameter('category', $category);
+  }
 }

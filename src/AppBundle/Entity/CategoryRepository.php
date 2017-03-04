@@ -19,6 +19,7 @@ class CategoryRepository extends EntityRepository
     $qb = $this->createQueryBuilder('cat')
       ->addOrderBy('cat.name', 'ASC');
     $query = $qb->getQuery();
+    var_dump($query->getDQL());die;
     
     return $query->execute();
   }

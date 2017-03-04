@@ -25,8 +25,8 @@ class CategoryRepository extends EntityRepository
   
   public function search($term){
     return $this->createQueryBuilder('cat')
-      ->andWhere('cat.name = :searchTerm')
-      ->setParameter('searchTerm', $term)
+      ->andWhere('cat.name LIKE :searchTerm')
+      ->setParameter('searchTerm', '%'.$term.'%')
       ->getQuery()
       ->execute();
   }

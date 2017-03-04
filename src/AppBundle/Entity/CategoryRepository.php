@@ -13,6 +13,6 @@ use Doctrine\ORM\EntityRepository;
 class CategoryRepository extends EntityRepository
 {
   public function findAllOrdered(){
-    die('this query will blow your mind...');
+    $dql = 'SELECT cat FROM AppBundle\Entity\Category cat';
   }
 }

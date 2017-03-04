@@ -12,4 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+  public function findAllOrdered(){
+    die('this query will blow your mind...');
+  }
 }

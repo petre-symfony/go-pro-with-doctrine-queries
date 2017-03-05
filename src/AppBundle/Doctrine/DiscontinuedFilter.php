@@ -20,6 +20,6 @@ class DiscontinuedFilter extends SQLFilter{
       return '';
     }
     
-    return sprintf('%s.discontinued = false', $targetTableAlias);
+    return sprintf('%s.discontinued = %s', $targetTableAlias, $this->getParameter('discontinued'));
   }
 }

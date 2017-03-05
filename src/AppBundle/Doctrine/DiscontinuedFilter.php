@@ -1,8 +1,21 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace AppBundle\Doctrine;
 
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Query\Filter\SQLFilter;
+
+class DiscontinuedFilter extends SQLFilter{
+  /**
+   * Gets the SQL query part to add to a query
+   * 
+   * @param ClassMetaData $targetEntity
+   * @param string $targetTableAlias
+   * 
+   * @return string The constraint SQL if there is available, empty string otherwise
+   */
+  
+  public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias) {
+    
+  }
+}

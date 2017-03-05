@@ -15,7 +15,10 @@ class FortuneCookieRepository extends EntityRepository
 {
   public function countNumberForCategory(Category $category){
     $conn = $this->getEntityManager()->getConnection();
-    $sql = 'SELECT * FROM fortune_cookie';
+    $sql = 'SELECT SUM(fc.numberPrinted) as fortunesPrinted, AVG(fc.numberPrinted) as fortunesAverage, cat.name
+            FROM fortune_cookie fc 
+            INNER JOIN category cat ON cat.id = fc.category_id
+            WHERE fc.category_id = :category';
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     var_dump($stmt->fetchAll());die;

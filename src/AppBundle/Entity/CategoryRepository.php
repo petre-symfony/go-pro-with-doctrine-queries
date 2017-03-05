@@ -17,10 +17,10 @@ class CategoryRepository extends EntityRepository
     //$dql = 'SELECT cat FROM AppBundle\Entity\Category cat ORDER BY cat.name DESC';
     //$query = $this->getEntityManager()->createQuery($dql);
     
-    $qb = $this->createQueryBuilder('cat')
-      ->leftJoin('cat.fortuneCookies', 'fc')
-      ->addSelect('fc')      
+    $qb = $this->createQueryBuilder('cat')     
       ->addOrderBy('cat.name', 'ASC');
+    $this->addFortuneCookieJoinAndSelect($qb);
+    
     $query = $qb->getQuery();
     
     return $query->execute();

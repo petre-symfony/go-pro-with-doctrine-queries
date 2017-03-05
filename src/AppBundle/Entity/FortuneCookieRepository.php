@@ -17,6 +17,7 @@ class FortuneCookieRepository extends EntityRepository
     return $this->createQueryBuilder('fc')
       ->andWhere('fc.category = :category')
       ->setParameter('category', $category)
+      ->innerJoin('fc.category', 'cat')       
       ->select('SUM(fc.numberPrinted) as fortunesPrinted, AVG(fc.numberPrinted) as fortunesAverage, cat.name')
       ->getQuery()
       ->getSingleScalarResult();

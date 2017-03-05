@@ -20,6 +20,6 @@ class FortuneCookieRepository extends EntityRepository
       ->innerJoin('fc.category', 'cat')       
       ->select('SUM(fc.numberPrinted) as fortunesPrinted, AVG(fc.numberPrinted) as fortunesAverage, cat.name')
       ->getQuery()
-      ->getSingleScalarResult();
+      ->getOneOrNullResult();
   }
 }

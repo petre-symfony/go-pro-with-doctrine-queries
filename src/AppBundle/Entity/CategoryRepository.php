@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * CategoryRepository
@@ -45,5 +46,14 @@ class CategoryRepository extends EntityRepository
       ->setParameter('id', $id)
       ->getQuery()
       ->getOneOrNullResult();
+  }
+  
+  /**
+   * 
+   * @param QueryBuilder $qb
+   * @return QueryBuilder
+   */
+  private function addFortuneCookieJoinAndSelect(QueryBuilder $qb){
+    return $qb->leftJoin('cat.fortuneCookies', 'fc')->addSelect('fc');
   }
 }

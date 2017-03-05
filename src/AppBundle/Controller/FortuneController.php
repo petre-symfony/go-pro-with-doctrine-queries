@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManager;
 
 class FortuneController extends Controller
 {
@@ -14,6 +15,7 @@ class FortuneController extends Controller
      */
     public function homepageAction(Request $request)
     {
+        /** @var EntityManager $em */
         $categoryRepository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Category');

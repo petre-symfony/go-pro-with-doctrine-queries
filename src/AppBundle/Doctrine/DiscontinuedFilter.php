@@ -16,6 +16,6 @@ class DiscontinuedFilter extends SQLFilter{
    */
   
   public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias) {
-    
+    var_dump($targetEntity);die;
   }
 }

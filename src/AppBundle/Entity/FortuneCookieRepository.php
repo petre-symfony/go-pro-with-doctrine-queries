@@ -21,7 +21,7 @@ class FortuneCookieRepository extends EntityRepository
             WHERE fc.category_id = :category';
     $stmt = $conn->prepare($sql);
     $stmt->execute(array('category' => $category->getId()));
-    var_dump($stmt->fetch());die;
+    return $stmt->fetch();
     
     return $this->createQueryBuilder('fc')
       ->andWhere('fc.category = :category')

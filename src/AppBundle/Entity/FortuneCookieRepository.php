@@ -20,7 +20,7 @@ class FortuneCookieRepository extends EntityRepository
             INNER JOIN category cat ON cat.id = fc.category_id
             WHERE fc.category_id = :category';
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute(array('category' => $category->getId()));
     var_dump($stmt->fetchAll());die;
     
     return $this->createQueryBuilder('fc')

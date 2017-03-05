@@ -16,6 +16,8 @@ class FortuneController extends Controller
     public function homepageAction(Request $request)
     {
         /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        $em->getFilters()->enable('fortune_cookie_discontinued');
         $categoryRepository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Category');

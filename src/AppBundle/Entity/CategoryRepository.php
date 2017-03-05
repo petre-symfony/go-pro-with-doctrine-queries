@@ -27,15 +27,14 @@ class CategoryRepository extends EntityRepository
   }
   
   public function search($term){
-    return $this->createQueryBuilder('cat')
+    $qb = $this->createQueryBuilder('cat')
       ->andWhere('cat.name LIKE :searchTerm 
         OR cat.iconKey LIKE :searchTerm
-        OR fc.fortune LIKE :searchTerm')
-      ->leftJoin('cat.fortuneCookies', 'fc')
-      ->addSelect('fc')      
-      ->setParameter('searchTerm', '%'.$term.'%')
-      ->getQuery()
-      ->execute();
+        OR fc.fortune LIKE :searchTerm');      
+    
+    $this->addFortuneCookieJoinAndSelect($qb);
+    
+    return $qb->setParameter('searchTerm', '%'.$term.'%')->getQuery()->execute();
   }
   
   public function findWithFortunesJoin($id){

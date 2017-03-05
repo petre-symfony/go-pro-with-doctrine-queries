@@ -14,6 +14,9 @@ use AppBundle\Entity\Category;
 class FortuneCookieRepository extends EntityRepository
 {
   public function countNumberForCategory(Category $category){
+    $conn = $this->getEntityManager()->getConnection();
+    var_dump($conn);die;
+    
     return $this->createQueryBuilder('fc')
       ->andWhere('fc.category = :category')
       ->setParameter('category', $category)

@@ -15,7 +15,7 @@ class FortuneCookieRepository extends EntityRepository
 {
   public function countNumberForCategory(Category $category){
     $conn = $this->getEntityManager()->getConnection();
-    var_dump($conn);die;
+    $sql = 'SELECT * FROM fortune_cookie';
     
     return $this->createQueryBuilder('fc')
       ->andWhere('fc.category = :category')
